@@ -6,7 +6,7 @@ distill: false
 embed_dim: 256
 epsilon: 2
 image_res: 384
-image_root: /media/ssd-3t/kkuvshinova/checkpoints_co_attack/flickr
+image_root: /media/ssd-3t/kkuvshinova/checkpoints_co_attack/flickr/flickr30k-images/flickr30k_images
 k_test: 128
 momentum: 0.995
 num_iters: 10

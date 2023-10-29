@@ -1,5 +1,5 @@
 test_file: 'data/official/flickr30k_test.json'
-image_root: '/media/ssd-3t/kkuvshinova/checkpoints_co_attack/flickr' #flickr30k-images/
+image_root: '/media/ssd-3t/kkuvshinova/checkpoints_co_attack/flickr/flickr30k-images/flickr30k_images' #flickr30k-images/
 
 bert_config: 'configs/config_bert.json'
 
