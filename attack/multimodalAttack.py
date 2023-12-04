@@ -48,6 +48,7 @@ class MultiModalAttacker():
                     adv_embed = adv_output['fusion_output'][:, 0, :]
                 else:
                     adv_embed = adv_output['fusion_output'].flatten(1)
+                # FORMULA 2
                 loss = criterion(adv_embed.log_softmax(dim=-1), origin_embeds.softmax(dim=-1))
                 loss.backward()
             images_adv = next(image_attack)
@@ -75,6 +76,7 @@ class MultiModalAttacker():
                 loss_clean_text = criterion(adv_embed.log_softmax(dim=-1), origin_embeds.softmax(dim=-1))
 
                 loss_adv_text = criterion(adv_embed.log_softmax(dim=-1), text_adv_embed.softmax(dim=-1))
+                # FORMULA 6
                 loss = loss_adv_text + alpha * loss_clean_text
                 loss.backward()
             images_adv = next(image_attack)
@@ -83,6 +85,8 @@ class MultiModalAttacker():
             images_adv = images
 
         # text
+        # ?????
+        # FORMULA 3
         if adv == 1 or adv == 3 or adv == 4 or adv == 5:
             with torch.no_grad():
                 text_adv = self.text_attacker.attack(self.net, images, text, k)
@@ -130,6 +134,8 @@ class MultiModalAttacker():
 
                 loss_adv_text = criterion(F.normalize(image_adv_embed, dim=-1).log_softmax(dim=-1),
                                           F.normalize(text_adv_embed, dim=-1).softmax(dim=-1).repeat(self.repeat, 1))
+
+                # FORMULA 7
                 loss = loss_image_trades + alpha * loss_adv_text
                 loss.backward()
 
